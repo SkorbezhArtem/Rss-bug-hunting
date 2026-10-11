@@ -17,19 +17,15 @@ const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 
 function getFiltered() {
-  let result = [...products];
-  const search = searchInput.value;
+  const query = searchInput.value.trim().toLowerCase();
   const category = categorySelect.value;
   const sort = sortSelect.value;
 
-  const query = search.trim().toLowerCase();
-  if (query) {
-    result = result.filter((p) => p.name.toLowerCase().includes(query));
-  }
-
-  if (category !== "all") {
-    result = result.filter((p) => p.category === category);
-  }
+  let result = products.filter((p) => {
+    const matchesSearch = !query || p.name.toLowerCase().includes(query);
+    const matchesCategory = category === "all" || p.category === category;
+    return matchesSearch && matchesCategory;
+  });
 
   if (sort === "asc") {
     result.sort((a, b) => a.price - b.price);
