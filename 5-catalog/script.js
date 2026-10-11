@@ -22,8 +22,9 @@ function getFiltered() {
   const category = categorySelect.value;
   const sort = sortSelect.value;
 
-  if (search) {
-    result = result.filter((p) => p.name === search);
+  const query = search.trim().toLowerCase();
+  if (query) {
+    result = result.filter((p) => p.name.toLowerCase() === query);
   }
 
   if (category !== "all") {
