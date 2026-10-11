@@ -24,7 +24,7 @@ function getFiltered() {
 
   const query = search.trim().toLowerCase();
   if (query) {
-    result = result.filter((p) => p.name.toLowerCase() === query);
+    result = result.filter((p) => p.name.toLowerCase().includes(query));
   }
 
   if (category !== "all") {
